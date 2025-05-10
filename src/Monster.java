@@ -18,6 +18,8 @@ public abstract class Monster implements Fighter {
     }
 
     public void sayDialogue() {System.out.println(this.dialogue);}
+
+    public abstract void showArt();
 }
 
 

@@ -1,21 +1,24 @@
 public class Companion implements Fighter {
     private final String name;
     private final int strength;
-    private int health;
+    private final int maxHealth;
+    private int currentHealth;
 
-    Companion(String name, int strength, int health) {
+    Companion(String name, int strength, int maxHealth) {
         this.name = name;
         this.strength = strength;
-        this.health = health;
+        this.maxHealth = maxHealth;
+        this.currentHealth = maxHealth;
     }
     public String getName() {return this.name;}
     public int getStrength() {return this.strength;}
-    public int getHealth() {return this.health;}
+    public int getMaxHealth() {return this.maxHealth;}
+    public int getCurrentHealth() {return this.currentHealth;}
 
     public void sayHello() {
         System.out.println("Witaj podróżniku. Nazywam się " + Colour.BLUE_BRIGHT + this.getName() + Colour.RESET);
     }
-    public void setHealth(int health) {this.health = health;}
+    public void setHealth(int health) {this.currentHealth = health;}
 
     @Override
     public void attack(Fighter victim) {
@@ -27,8 +30,8 @@ public class Companion implements Fighter {
     public void takeHit(int dmg) {
         System.out.println(Colour.BLUE_BOLD + this.getName() + Colour.RESET + " otrzymuje " + Colour.RED + dmg + Colour.RESET + " punktów obrażeń.");
 
-        this.setHealth(this.getHealth() - dmg);
-        if(this.getHealth() <= 0){
+        this.setHealth(this.getCurrentHealth() - dmg);
+        if(this.getCurrentHealth() <= 0){
             System.out.println(Colour.RED + this.getName() + " umiera!" + Colour.RESET);
         }
     }

@@ -15,5 +15,23 @@ public class Monsters {
                 System.out.println(Colour.GREEN_BRIGHT + "Skeleton pokonany!" + Colour.RESET);
             }
         }
+        public void showArt(){
+            System.out.println("""
+              .-.
+             (o.o)
+              |=|
+             __|__
+           //.=|=.\\\\
+          // .=|=. \\\\
+          \\\\ .=|=. //
+           \\\\(_=_)//
+            (:| |:)
+             || ||
+             () ()
+             || ||
+             || ||
+            ==' '==
+        """);
+        }
     };
 }
