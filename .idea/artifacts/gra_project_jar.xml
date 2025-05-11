@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="gra_project:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/gra_project_jar</output-path>
+    <root id="archive" name="gra_project.jar">
+      <element id="module-output" name="gra_project" />
+    </root>
+  </artifact>
+</component>
