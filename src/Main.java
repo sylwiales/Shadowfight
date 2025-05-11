@@ -3,11 +3,6 @@ import java.util.Scanner;
 
 public class Main {
 
-    public static void clearScreen() {
-        System.out.print("\033[H\033[2J");
-        System.out.flush();
-    }
-
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         Random rand = new Random();
@@ -19,33 +14,34 @@ public class Main {
         party[0] = new Companion("Natinel", 80,50);
         party[1] = new Companion("Klara", 90,50);
 
-        clearScreen();
+        Utility.clearScreen();
 
         while(true) {
             System.out.println("MENU");
             System.out.println("1. Idź na misję");
             System.out.println("2. Zakończ grę");
 
-            int option = sc.nextInt();
-            clearScreen();
+            int option = Utility.getValidInput(2);
+            Utility.clearScreen();
 
             if(option == 1) {
-                int activeMonster = 0; // tu normalnie sie będzie losować
-                monsters[activeMonster].showArt();
+                int activeMonster = 0;
                 boolean isPartyWinner = false;
 
                 while(monsters[activeMonster].getHealth() > 0 && (party[0].getCurrentHealth() > 0 || party[1].getCurrentHealth() > 0)){
+                    monsters[activeMonster].showArt();
 
-                    for(Companion companion : party) {
-                        companion.sayHello();
+                    System.out.println(Utility.displayHeader("WYBIERZ POSTAĆ"));
+                    for(int i = 0; i < party.length; i++) {
+                        System.out.println(i + 1 + ".\t" + party[i].displayInfo());
                     }
-                    int activeParty = sc.nextInt() - 1;
+                    int activeParty = Utility.getValidInput(2) - 1;
 
-                    clearScreen();
-                    System.out.println(party[activeParty].getName().toUpperCase());
+                    Utility.clearScreen();
+                    System.out.println(Utility.displayHeader(party[activeParty].getName().toUpperCase()));
                     System.out.println("1. ATAK\t2. ULECZ SIĘ");
 
-                    option = sc.nextInt();
+                    option = Utility.getValidInput(2);
                     if(option == 1) {
                         party[activeParty].attack(monsters[activeMonster]);
                     }

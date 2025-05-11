@@ -1,6 +1,6 @@
 public class Monsters {
     
-    public static final Monster skeleton = new Monster(10, 70, "Prachuje ci kości >:)", Art.SKELETON_ART) {
+    public static final Monster skeleton = new Monster(10, 20, "Prachuje ci kości >:)", Art.SKELETON_ART) {
         @Override
         public void attack(Fighter victim) {
             victim.takeHit(this.getDamage());

@@ -10,15 +10,21 @@ public class Companion implements Fighter {
         this.maxHealth = maxHealth;
         this.currentHealth = maxHealth;
     }
+
     public String getName() {return this.name;}
     public int getStrength() {return this.strength;}
     public int getMaxHealth() {return this.maxHealth;}
     public int getCurrentHealth() {return this.currentHealth;}
 
+    public void setHealth(int health) {this.currentHealth = health;}
+
     public void sayHello() {
         System.out.println("Witaj podróżniku. Nazywam się " + Colour.BLUE_BRIGHT + this.getName() + Colour.RESET);
     }
-    public void setHealth(int health) {this.currentHealth = health;}
+
+    public String displayInfo(){
+        return getName().toUpperCase() + "\t" + Colour.RED + getCurrentHealth() + Colour.RESET + "/" + getMaxHealth();
+    }
 
     @Override
     public void attack(Fighter victim) {
