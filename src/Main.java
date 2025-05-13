@@ -7,8 +7,10 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         Random rand = new Random();
 
-        Monster[] monsters = new Monster[1];
+        Monster[] monsters = new Monster[2];
         monsters[0] = Monsters.skeleton;
+        monsters[1] = Monsters.ben;
+        int activeMonster = 0;
 
         Companion[] party = new Companion[2];
         party[0] = new Companion("Natinel", 80,50);
@@ -25,7 +27,6 @@ public class Main {
             Utility.clearScreen();
 
             if(option == 1) {
-                int activeMonster = 0;
                 boolean isPartyWinner = false;
 
                 while(monsters[activeMonster].getHealth() > 0 && (party[0].getCurrentHealth() > 0 || party[1].getCurrentHealth() > 0)){
@@ -63,6 +64,7 @@ public class Main {
                     for(Companion companion : party) {
                         companion.setHealth(companion.getMaxHealth());
                     }
+                    activeMonster++; // Powtór został pokonany, przechodzimy do następnego w tablicy
                 }
                 else{
                     System.out.println("Skill issue");
