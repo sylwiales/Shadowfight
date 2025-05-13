@@ -7,7 +7,8 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         Random rand = new Random();
 
-        Monster[] monsters = new Monster[2];
+        int monstersAmount = 2;
+        Monster[] monsters = new Monster[monstersAmount];
         monsters[0] = Monsters.skeleton;
         monsters[1] = Monsters.ben;
         int activeMonster = 0;
@@ -61,10 +62,14 @@ public class Main {
 
                 if(isPartyWinner) {
                     System.out.println("To super");
-                    for(Companion companion : party) {
+                    for (Companion companion : party) {
                         companion.setHealth(companion.getMaxHealth());
                     }
                     activeMonster++; // Powtór został pokonany, przechodzimy do następnego w tablicy
+                    if (!(activeMonster < monstersAmount)) {
+                        System.out.println("Gratulacje! Koniec gry");
+                        break;
+                    }
                 }
                 else{
                     System.out.println("Skill issue");
