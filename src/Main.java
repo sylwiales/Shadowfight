@@ -7,10 +7,16 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         Random rand = new Random();
 
-        int monstersAmount = 2;
+        int monstersAmount = 7; // Ile potworów jest w tablicy
         Monster[] monsters = new Monster[monstersAmount];
         monsters[0] = Monsters.skeleton;
         monsters[1] = Monsters.ben;
+        monsters[2] = Monsters.griffin;
+        monsters[3] = Monsters.maksio;
+        monsters[4] = Monsters.ghosts;
+        monsters[5] = Monsters.wizard;
+        monsters[6] = Monsters.dragon;
+
         int activeMonster = 0;
 
         Companion[] party = new Companion[2];
