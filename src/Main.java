@@ -44,7 +44,13 @@ public class Main {
                         System.out.println(i + 1 + ".\t" + party[i].displayInfo());
                     }
                     int activeParty = Utility.getValidInput(2) - 1;
-
+                    /* Jeśli wybierzemy postać, która już umarła, musimy wybrać inną */
+                    while(party[activeParty].getCurrentHealth()<=0)
+                    {
+                        System.out.println(party[activeParty].getName() + " nie żyje");
+                        System.out.println("Wybierz inną postać");
+                        activeParty = Utility.getValidInput(2) - 1;
+                    }
                     Utility.clearScreen();
                     System.out.println(Utility.displayHeader(party[activeParty].getName().toUpperCase()));
                     System.out.println("1. ATAK\t2. ULECZ SIĘ");
