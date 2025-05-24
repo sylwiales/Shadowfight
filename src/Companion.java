@@ -1,14 +1,25 @@
+import java.util.Random;
+
 public class Companion implements Fighter {
     private final String name;
     private final int strength;
     private final int maxHealth;
     private int currentHealth;
+    private static final Random rand = new Random();
 
     Companion(String name, int strength, int maxHealth) {
         this.name = name;
         this.strength = strength;
         this.maxHealth = maxHealth;
         this.currentHealth = maxHealth;
+    }
+
+    // Konstruktor do klejenia losowych postaci nz losowymi statystykami na szybko
+    Companion(String name) {
+        this.name = name;
+        this.strength = 70 + rand.nextInt(31); // 70-100
+        this.maxHealth = 40 + rand.nextInt(41); // 40-80
+        this.currentHealth = this.maxHealth;
     }
 
     public String getName() {return this.name;}
