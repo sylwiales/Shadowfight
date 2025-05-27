@@ -2,7 +2,8 @@ import java.util.Scanner;
 import java.util.InputMismatchException;
 
 public class Utility {
-    public static final int LINE_LENGTH = 50;
+    public static final String BORDER = "+==========================================================================+";
+    public static final int BORDER_LENGTH = BORDER.length();
     private static final Scanner scanner = new Scanner(System.in);
 
     /**
@@ -42,12 +43,26 @@ public class Utility {
      * @param text
      * @return string z potrzebną ilością pauz
      */
-    public static String displayHeader(String text) {
-        int paddingNeeded = LINE_LENGTH - text.length();
-        if (paddingNeeded <= 0) {
-            return text;
-        }
-        return text + "-".repeat(paddingNeeded);
+    public static void displayHeader(String text) {
+        int textLength = text.length();
+
+        // Oblicz lewą i prawą przestrzeń
+        int totalSpaces = BORDER_LENGTH - textLength;
+        int spaces = totalSpaces / 2;
+
+        String centeredText = " ".repeat(spaces) + text + " ".repeat(spaces);
+
+        System.out.println(centeredText);
+        System.out.println(BORDER);
+
     }
 
+    public static void printCenteredText(String[] lines) {
+        int maxLength = 0;
+        int padding;
+        for (String line : lines) {
+            padding = (Utility.BORDER_LENGTH - line.length()) / 2;
+            System.out.printf("%" + (padding + line.length()) + "s%n", line);
+        }
+    }
 }

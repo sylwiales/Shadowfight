@@ -3,7 +3,7 @@ public class Main {
         Game game = new Game();
 
         while(true) {
-            System.out.println("MENU");
+            Utility.displayHeader("MENU");
             System.out.println("1. Zbierz drużynę");
             System.out.println("2. Idź na polowanie");
             System.out.println("3. Zakończ grę");
