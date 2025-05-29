@@ -1,6 +1,6 @@
 import java.util.Random;
 public class Monsters {
-    private Random rand = new Random();
+    private static Random rand = new Random();
     public static final Monster skeleton = new Monster("Cukan",40, 20, Data.AttackType.BLUDGEONING,"Prachuje wam kości >:)", Art.SKELETON_ART) {
         @Override
         public void attack(Fighter victim) {
@@ -30,7 +30,7 @@ public class Monsters {
     public static final Monster ghosts = new Monster("duszki", 100, 20, Data.AttackType.MAGIC,"boo!", Art.GHOST_ART) {
         @Override
         public void attack(Fighter victim) {
-            victim.takeHit(this.getDamage(), null);
+            victim.takeHit(this.getDamage(), Data.AttackType.MAGIC);
         }
 
         @Override
@@ -53,7 +53,7 @@ public class Monsters {
         }
     };
 
-    public static final Monster maksio = new Monster("Maksio", 20, 100, Data.AttackType.PIERCING ,"Maksio dialogue", Art.MAKSIO_ART) {
+    public static final Monster maksio = new Monster("Maksio", 20, 100, Data.AttackType.PIERCING ,"woof woof arf", Art.MAKSIO_ART) {
         @Override
         public void attack(Fighter victim) {
             victim.takeHit(this.getDamage(),  Data.AttackType.MAGIC);
@@ -93,7 +93,9 @@ public class Monsters {
 
             if (isWeak) {
                 System.out.println(Colour.YELLOW + this.getName() + Colour.RESET + " jest wrażliwy na obrażenia " + attackType.getName() + "! Otrzymuje " + finalDamage + " punktów obrażeń!");
-                System.out.println("GM przewidział taki przebieg wydarzeń, już nie jest wrażliwy na obrażenia " + attackType);
+                System.out.println("GM przewidział taki przebieg wydarzeń, już nie jest wrażliwy na obrażenia " + attackType.getName() + "!");
+                Data.AttackType[] attackTypes = Data.AttackType.values();
+                this.setWeakness(attackTypes[rand.nextInt(1,4)]);
 
             }
             else{

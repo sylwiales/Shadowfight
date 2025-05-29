@@ -32,7 +32,7 @@ public class Companion implements Fighter {
             paralyzedTurnsRemaining = 0;
         }
         else{
-            paralyzedTurnsRemaining--;
+            paralyzedTurnsRemaining -= turnsRemaining;
         }
     }
 
@@ -90,7 +90,7 @@ public class Companion implements Fighter {
 
         if(attackType == Data.AttackType.MAGIC && rand.nextInt(1,20) > 15) {
             System.out.println("Obecność magii paraliżuje " + this.getName() + ". Nie może atakować przez 3 tury.");
-            paralyzedTurnsRemaining = 1;
+            paralyzedTurnsRemaining = 3;
         }
 
         this.setHealth(this.getCurrentHealth() - dmg);

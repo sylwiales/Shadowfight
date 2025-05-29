@@ -38,10 +38,8 @@ public class Utility {
     }
 
     /**
-     * Metoda jako argument przyjmuje tekst do którego dodaje pauzy potrzebne do osiągnięcia
-     * określonej długości stringa. Następnie zwraca gotowego stringa.
+     * Metoda jako argument przyjmuje tekst który centruje i wyświetla nad BORDER
      * @param text
-     * @return string z potrzebną ilością pauz
      */
     public static void displayHeader(String text) {
         int textLength = text.length();
@@ -54,14 +52,27 @@ public class Utility {
 
         System.out.println(centeredText);
         System.out.println(BORDER);
-
     }
 
+    /**
+     * Metoda jako argument przyjmuje tablice stringów którą centruje do BORDER i ją wyświetla linijka po linijce
+     * @param lines
+     */
     public static void printCenteredText(String[] lines) {
         int padding;
         for (String line : lines) {
             padding = (Utility.BORDER_LENGTH - line.length()) / 2;
             System.out.printf("%" + (padding + line.length()) + "s%n", line);
         }
+    }
+
+    /**
+     * Metoda czeka na wciśnięcie enter następinie czysci konsole.
+     */
+    public static void pressEnter(){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("\nNaciśnij Enter, aby kontynuować...");
+        sc.nextLine();
+        Utility.clearScreen();
     }
 }

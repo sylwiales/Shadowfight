@@ -75,9 +75,7 @@ public class Game {
             System.out.println(companion.displayInfo());
         }
 
-        System.out.println("\nNaciśnij Enter, aby kontynuować...");
-        sc.nextLine(); // Czekamy na Enter
-        Utility.clearScreen();
+        Utility.pressEnter();
     }
 
     public void startHunt() {
@@ -96,7 +94,7 @@ public class Game {
         int monsterMaxHealth = currentMonster.getHealth();
 
         while (true) {
-            int option = 3;
+            int option;
             Companion activeCompanion;
 
             do{
@@ -143,8 +141,6 @@ public class Game {
                 }
             }while(option == 3);
 
-
-
             if(currentMonster.getHealth() > 0){
                 currentMonster.attack(activeCompanion);
             }
@@ -157,9 +153,7 @@ public class Game {
             }
         }
 
-        System.out.println("\nNaciśnij Enter, aby kontynuować...");
-        sc.nextLine(); // Czekamy na Enter
-        Utility.clearScreen();
+        Utility.pressEnter();
 
         if (isPartyWinner) {
             // Next potwór na liście
