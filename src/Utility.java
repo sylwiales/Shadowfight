@@ -58,7 +58,6 @@ public class Utility {
     }
 
     public static void printCenteredText(String[] lines) {
-        int maxLength = 0;
         int padding;
         for (String line : lines) {
             padding = (Utility.BORDER_LENGTH - line.length()) / 2;

@@ -11,6 +11,8 @@ public class Game {
     private List<Companion> party;
     private final List<Companion> availableCompanions;
 
+    public static int turn = 0;
+
     public Game() {
         sc = new Scanner(System.in);
         rand = new Random();
@@ -94,45 +96,60 @@ public class Game {
         int monsterMaxHealth = currentMonster.getHealth();
 
         while (true) {
-            // Wyświetlanie informacji o potworze
-            currentMonster.displayMonsterInfo(monsterMaxHealth);
+            int option = 3;
+            Companion activeCompanion;
 
-            // Wyświetlanie informacji o drużynie
-            Utility.displayHeader("WYBIERZ POSTAĆ DO WALKI");
-            for (int i = 0; i < party.size(); i++) {
-                System.out.println((i + 1) + ". " + party.get(i).displayInfo());
-            }
+            do{
+                // Wyświetlanie informacji o potworze
+                currentMonster.displayMonsterInfo(monsterMaxHealth);
+                // Wyświetlanie informacji o drużynie
+                Utility.displayHeader("WYBIERZ POSTAĆ DO WALKI");
+                for (int i = 0; i < party.size(); i++) {
+                    System.out.println((i + 1) + ". " + party.get(i).displayInfo());
+                }
 
-            int activePartyIndex = Utility.getValidInput(party.size()) - 1;
-            Companion activeCompanion = party.get(activePartyIndex);
-
-            while (activeCompanion.getCurrentHealth() <= 0) {
-                System.out.println(activeCompanion.getName() + " nie żyje");
-                System.out.println("Wybierz inną postać");
-                activePartyIndex = Utility.getValidInput(party.size()) - 1;
+                int activePartyIndex = Utility.getValidInput(party.size()) - 1;
                 activeCompanion = party.get(activePartyIndex);
-            }
 
-            Utility.displayHeader(activeCompanion.getName());
-            System.out.println("1. ATAKUJ\n2. ULECZ SIĘ");
+                while (activeCompanion.getCurrentHealth() <= 0) {
+                    System.out.println(activeCompanion.getName() + " nie żyje");
+                    System.out.println("Wybierz inną postać");
+                    activePartyIndex = Utility.getValidInput(party.size()) - 1;
+                    activeCompanion = party.get(activePartyIndex);
+                }
 
-            int option = Utility.getValidInput(2);
-            Utility.clearScreen();
+                Utility.displayHeader(activeCompanion.getName());
+                System.out.println("1. ATAKUJ\n2. LECZ\n3. COFNIJ");
 
-            if (option == 1) {
-                activeCompanion.attack(currentMonster);
-            } else if (option == 2) {
-                int healAmount = 10;
-                System.out.println(activeCompanion.getName().toUpperCase() + " dodaje " + healAmount + " punktów życia");
-                activeCompanion.setHealth(Math.min(
-                        activeCompanion.getCurrentHealth() + healAmount,
-                        activeCompanion.getMaxHealth()));
-            }
+                option = Utility.getValidInput(3);
+                Utility.clearScreen();
+
+                if (option == 1) {
+                    activeCompanion.attack(currentMonster);
+                } else if (option == 2) {
+                    if(activeCompanion.getAttackType() == Data.AttackType.MAGIC){
+                        currentMonster.displayMonsterInfo(monsterMaxHealth);
+                        Utility.displayHeader("WYBIERZ CEL LECZENIA");
+                        for (int i = 0; i < party.size(); i++) {
+                            System.out.println((i + 1) + ". " + party.get(i).displayInfo());
+                        }
+                        option = Utility.getValidInput(party.size()) - 1;
+                        Utility.clearScreen();
+                        activeCompanion.heal(party.get(option));
+                    }
+                    else{
+                        activeCompanion.heal();
+                    }
+                }
+            }while(option == 3);
+
+
 
             if(currentMonster.getHealth() > 0){
                 currentMonster.attack(activeCompanion);
             }
 
+            endTurn();
             // Sprawdzenie warunków zakończenia walki
             if (checkBattleEnd(currentMonster)) {
                 isPartyWinner = currentMonster.getHealth() <= 0;
@@ -175,8 +192,15 @@ public class Game {
                 break;
             }
         }
-
         return allDead;
+    }
+
+    public void endTurn(){
+        for (Companion companion : party) {
+            if(companion.isParalyzed()){
+                companion.setParalyzedTurnsRemaining(1);
+            }
+        }
     }
 }
 
