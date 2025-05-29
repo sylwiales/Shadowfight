@@ -1,6 +1,12 @@
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
         Game game = new Game();
+
+        Utility.printCenteredText(Art.GAME_TITLE);
+        Utility.pressEnter();
+        Utility.clearScreen();
 
         while(true) {
             Utility.displayHeader("MENU");
