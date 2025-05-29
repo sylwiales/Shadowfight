@@ -163,7 +163,9 @@ public class Game {
                 System.out.println(Colour.YELLOW_BRIGHT + "Gratulacje, wszystkie potwory nie żyją!" + Colour.RESET);
             }
         } else {
-            System.out.println(Colour.RED_BRIGHT + "Twoja drużyna została pokonana ;(" + Colour.RESET);
+            Utility.clearScreen();
+            Utility.printCenteredText(Art.GAME_OVER);
+            Utility.pressEnter();
             currentMonster.setHealth(monsterMaxHealth);
         }
 
