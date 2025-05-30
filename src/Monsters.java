@@ -1,111 +1,112 @@
 import java.util.Random;
+
 public class Monsters {
-    private static Random rand = new Random();
-    public static final Monster skeleton = new Monster("Cukan",40, 20, Data.AttackType.BLUDGEONING,"Prachuje wam kości >:)", Art.SKELETON_ART) {
+    private static final Random rand = new Random();
+
+    public static final Monster skeleton = new Monster("Cukan", 50, 20, Data.AttackType.BLUDGEONING, "Prachuje wam kości >:)", Art.SKELETON_ART) {
         @Override
         public void attack(Fighter victim) {
-            victim.takeHit(this.getDamage(), null);
+            victim.takeHit(rand.nextInt(10, getDamage()), null);
         }
 
         @Override
         public void takeHit(int damage, Data.AttackType attackType) {
-            boolean isWeak = (attackType == this.getWeakness());
+            boolean isWeak = (attackType == getWeakness());
             int finalDamage = isWeak ? damage * 2 : damage;
 
             if (isWeak) {
-                System.out.println(Colour.YELLOW + this.getName() + Colour.RESET + " jest wrażliwy na obrażenia " + attackType.getName() + "! Otrzymuje " + finalDamage + " punktów obrażeń!");
-            }
-            else{
-                System.out.println(Colour.YELLOW + this.getName() + Colour.RESET + " otrzymuje " + finalDamage + " punktów obrażeń!");
+                System.out.println(Colour.PURPLE_BRIGHT + getName() + Colour.RESET + " jest wrażliwy na obrażenia " + attackType.getName() + "! Otrzymuje " + Colour.RED + finalDamage + Colour.RESET + " punktów obrażeń!");
+            } else {
+                System.out.println(Colour.PURPLE_BRIGHT + getName() + Colour.RESET + " otrzymuje " + Colour.RED + finalDamage + Colour.RESET + " punktów obrażeń!");
             }
 
-            this.setHealth(this.getHealth() - finalDamage);
+            setHealth(getHealth() - finalDamage);
 
-            if(this.getHealth() <= 0) {
-                System.out.println(Colour.GREEN_BRIGHT + this.getName() + " pokonany!" + Colour.RESET);
+            if(getHealth() <= 0) {
+                System.out.println(Colour.GREEN_BRIGHT + getName() + " został pokonany!" + Colour.RESET);
             }
         }
     };
 
-    public static final Monster ghosts = new Monster("duszki", 100, 20, Data.AttackType.MAGIC,"boo!", Art.GHOST_ART) {
+    public static final Monster ghosts = new Monster("duszki", 100, 20, Data.AttackType.MAGIC, "boo!", Art.GHOST_ART) {
         @Override
         public void attack(Fighter victim) {
-            victim.takeHit(this.getDamage(), Data.AttackType.MAGIC);
+            victim.takeHit(rand.nextInt(10, getDamage()), Data.AttackType.MAGIC);
         }
 
         @Override
         public void takeHit(int damage, Data.AttackType attackType) {
-            boolean isWeak = (attackType == this.getWeakness());
+            boolean isWeak = (attackType == getWeakness());
             int finalDamage = isWeak ? damage * 2 : 0;
 
             if (isWeak) {
-                System.out.println(Colour.YELLOW + this.getName() + Colour.RESET + " są wrażliwe na obrażenia " + attackType.getName() + "! Otrzymują " + finalDamage + " punktów obrażeń!");
-            }
-            else{
-                System.out.println("Atak przenika przez " + Colour.YELLOW + this.getName() + Colour.RESET + "! Co się dzieje!");
-            }
-
-            this.setHealth(this.getHealth() - finalDamage);
-
-            if(this.getHealth() <= 0) {
-                System.out.println(Colour.GREEN_BRIGHT + this.getName() + " pokonane!" + Colour.RESET);
-            }
-        }
-    };
-
-    public static final Monster maksio = new Monster("Maksio", 20, 100, Data.AttackType.PIERCING ,"woof woof arf", Art.MAKSIO_ART) {
-        @Override
-        public void attack(Fighter victim) {
-            victim.takeHit(this.getDamage(),  Data.AttackType.MAGIC);
-        }
-
-        @Override
-        public void takeHit(int damage, Data.AttackType attackType) {
-            boolean isWeak = (attackType == this.getWeakness());
-            int finalDamage = isWeak ? damage * 2 : damage;
-
-            if (isWeak) {
-                System.out.println(Colour.YELLOW + this.getName() + Colour.RESET + " jest wrażliwy na obrażenia " + attackType.getName() + "! Otrzymuje " + finalDamage + " punktów obrażeń!");
-            }
-            else{
-                System.out.println(Colour.YELLOW + this.getName() + " otrzymuje " + finalDamage + " punktów obrażeń!" + Colour.RESET);
+                System.out.println(Colour.PURPLE_BRIGHT + getName() + Colour.RESET + " są wrażliwe na obrażenia " + attackType.getName() + "! Otrzymują " + Colour.RED + finalDamage + Colour.RESET + " punktów obrażeń!");
+            } else {
+                System.out.println("Atak przenika przez " + Colour.PURPLE_BRIGHT + getName() + Colour.RESET + "! Co się dzieje!");
             }
 
-            this.setHealth(this.getHealth() - finalDamage);
+            setHealth(getHealth() - finalDamage);
 
-            if(this.getHealth() <= 0) {
-                System.out.println(Colour.GREEN_BRIGHT + this.getName() + " pokonany!" + Colour.RESET);
+            if(getHealth() <= 0) {
+                System.out.println(Colour.GREEN_BRIGHT + getName() + " pokonane!" + Colour.RESET);
             }
         }
     };
 
-    public static final Monster wizard = new Monster("GM", 100, 30, Data.AttackType.SLASHING,"Czy 19 trafia?", Art.WIZARD_ART) {
-
+    public static final Monster maksio = new Monster("Maksio", 30, 100, Data.AttackType.PIERCING, "woof woof arf", Art.MAKSIO_ART) {
         @Override
         public void attack(Fighter victim) {
-            victim.takeHit(this.getDamage(), Data.AttackType.MAGIC);
+            victim.takeHit(rand.nextInt(10, getDamage()), Data.AttackType.MAGIC);
         }
 
         @Override
         public void takeHit(int damage, Data.AttackType attackType) {
-            boolean isWeak = (attackType == this.getWeakness());
+            boolean isWeak = (attackType == getWeakness());
             int finalDamage = isWeak ? damage * 2 : damage;
 
             if (isWeak) {
-                System.out.println(Colour.YELLOW + this.getName() + Colour.RESET + " jest wrażliwy na obrażenia " + attackType.getName() + "! Otrzymuje " + finalDamage + " punktów obrażeń!");
-                System.out.println("GM przewidział taki przebieg wydarzeń, już nie jest wrażliwy na obrażenia " + attackType.getName() + "!");
+                System.out.println(Colour.PURPLE_BRIGHT + getName() + Colour.RESET + " jest wrażliwy na obrażenia " + attackType.getName() + "! Otrzymuje " + Colour.RED + finalDamage + Colour.RESET + " punktów obrażeń!");
+            } else {
+                System.out.println(Colour.PURPLE_BRIGHT + getName() + " otrzymuje " + Colour.RED + finalDamage + Colour.RESET + " punktów obrażeń!" + Colour.RESET);
+            }
+
+            setHealth(getHealth() - finalDamage);
+
+            if(getHealth() <= 0) {
+                System.out.println(Colour.GREEN_BRIGHT + getName() + " pokonany!" + Colour.RESET);
+            }
+        }
+    };
+
+    public static final Monster wizard = new Monster("GM", 100, 30, Data.AttackType.SLASHING, "Czy 19 trafia?", Art.WIZARD_ART) {
+        @Override
+        public void attack(Fighter victim) {
+            victim.takeHit(rand.nextInt(10, getDamage()), Data.AttackType.MAGIC);
+        }
+
+        @Override
+        public void takeHit(int damage, Data.AttackType attackType) {
+            boolean isWeak = (attackType == getWeakness());
+            int finalDamage = isWeak ? damage * 2 : damage;
+
+            if (isWeak) {
+                System.out.println(Colour.PURPLE_BRIGHT + getName() + Colour.RESET + " jest wrażliwy na obrażenia " + attackType.getName() + "! Otrzymuje " + Colour.RED + finalDamage + Colour.RESET + " punktów obrażeń!");
+                System.out.println(Colour.PURPLE_BRIGHT + getName() + Colour.RESET +"przewidział taki przebieg wydarzeń, już nie jest wrażliwy na obrażenia " + attackType.getName() + "!");
                 Data.AttackType[] attackTypes = Data.AttackType.values();
-                this.setWeakness(attackTypes[rand.nextInt(1,4)]);
+                Data.AttackType selectedType;
+                do {
+                    selectedType = attackTypes[rand.nextInt(1,4)];
+                } while(selectedType == getWeakness());
 
+                setWeakness(selectedType);
+            } else {
+                System.out.println(Colour.PURPLE_BRIGHT + getName() + " otrzymuje " + Colour.RED + finalDamage + Colour.RESET + " punktów obrażeń!" + Colour.RESET);
             }
-            else{
-                System.out.println(Colour.YELLOW + this.getName() + " otrzymuje " + finalDamage + " punktów obrażeń!" + Colour.RESET);
-            }
 
-            this.setHealth(this.getHealth() - finalDamage);
+            setHealth(getHealth() - finalDamage);
 
-            if(this.getHealth() <= 0) {
-                System.out.println(Colour.GREEN_BRIGHT + this.getName() + " pokonany!" + Colour.RESET);
+            if(getHealth() <= 0) {
+                System.out.println(Colour.GREEN_BRIGHT + getName() + " pokonany!" + Colour.RESET);
             }
         }
     };

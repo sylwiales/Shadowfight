@@ -17,10 +17,12 @@ public class Data {
 
     public static final String[] COMPANION_DATA = {
             "Natinel,20,30,SLASHING",
-            "Klara,20,30,BLUDGEONING",
-            "Zaphiel,15,40,MAGIC",
-            "Czerkow,20,30,PIERCING",
-            "Witold,23,30,PIERCING",
-            "Tshiela,20,30,MAGIC"
+            "Klara,25,30,BLUDGEONING",
+            "Zaphiel,15,50,MAGIC",
+            "Czerkow,15,45,PIERCING",
+            "Witold,25,30,PIERCING",
+            "Eudora,25,20,MAGIC",
+            "Lilith,20,30,SLASHING",
+            "Zerith,20,30,BLUDGEONING"
     };
 }

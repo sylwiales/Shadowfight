@@ -1,29 +1,19 @@
-import java.util.Random;
-import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Game {
-    private Scanner sc;
-    private Random rand;
-    private final Monster[] monsters;
+    private final List<Monster> monsters;
     private int activeMonster;
     private List<Companion> party;
     private final List<Companion> availableCompanions;
 
-    public static int turn = 0;
-
     public Game() {
-        sc = new Scanner(System.in);
-        rand = new Random();
-
         // Inicjalizacja potworów
-        int monstersAmount = 4;
-        monsters = new Monster[monstersAmount];
-        monsters[0] = Monsters.skeleton;
-        monsters[1] = Monsters.ghosts;
-        monsters[2] = Monsters.maksio;
-        monsters[3] = Monsters.wizard;
+        monsters = new ArrayList<>();
+        monsters.add(Monsters.skeleton);
+        monsters.add(Monsters.ghosts);
+        monsters.add(Monsters.maksio);
+        monsters.add(Monsters.wizard);
         activeMonster = 0;
 
         // Inicjalizacja dostępnych postaci
@@ -67,7 +57,7 @@ public class Game {
             // Dodaj towarzysza do drużyny
             party.add(availableCompanions.get(choice));
 
-            System.out.println(Colour.GREEN_BRIGHT + selected.getName() + " dołącza do drużyny!" + Colour.RESET);
+            System.out.println(Colour.BLUE_BRIGHT + selected.getName() + " dołącza do drużyny!" + Colour.RESET);
         }
 
         Utility.displayHeader("DRUŻYNA");
@@ -83,15 +73,17 @@ public class Game {
             System.out.println("Przed wyruszeniem w drogę należy zebrać drużynę.");
             return;
         }
+        if (activeMonster >= monsters.size()) {
+            System.out.println(Colour.GREEN_BRIGHT + "Gratulacje, wszystkie potwory nie żyją!" + Colour.RESET);
+        }
 
-        Monster currentMonster = monsters[activeMonster];
+        Monster currentMonster = monsters.get(activeMonster);
+        boolean isPartyWinner;
+        int monsterMaxHealth = currentMonster.getHealth();
 
         // Wyświetlenie dialogu potwora tylko w pierwszej turze
-        System.out.println(Colour.PURPLE_BRIGHT + "Potwór mówi: " + Colour.RESET + currentMonster.getDialogue());
+        Utility.displayHeader(Colour.PURPLE_BRIGHT + "Potwór mówi: " + Colour.RESET + currentMonster.getDialogue());
         System.out.println();
-
-        boolean isPartyWinner = false;
-        int monsterMaxHealth = currentMonster.getHealth();
 
         while (true) {
             int option;
@@ -159,8 +151,8 @@ public class Game {
             // Next potwór na liście
             activeMonster++;
 
-            if (activeMonster >= monsters.length) {
-                System.out.println(Colour.YELLOW_BRIGHT + "Gratulacje, wszystkie potwory nie żyją!" + Colour.RESET);
+            if (activeMonster >= monsters.size()) {
+                System.out.println(Colour.GREEN_BRIGHT + "Gratulacje, wszystkie potwory nie żyją!" + Colour.RESET);
             }
         } else {
             Utility.clearScreen();
@@ -171,6 +163,7 @@ public class Game {
 
         for (Companion companion : party) {
             companion.setHealth(companion.getMaxHealth());
+            companion.setParalyzedTurnsRemaining(0);
         }
     }
 

@@ -28,8 +28,6 @@ public abstract class Monster implements Fighter {
     public void setWeakness(Data.AttackType weakness){this.weakness = weakness;}
 
     public void displayMonsterInfo(int monsterMaxHealth) {
-
-        String monsterName = this.getName();
         int currentHp = this.getHealth();
 
         int barLength = Utility.BORDER_LENGTH - 2;
@@ -38,7 +36,7 @@ public abstract class Monster implements Fighter {
         String healthBar = "[" + Colour.RED + "#".repeat(filled) + Colour.RESET +
                 "-".repeat(barLength - filled) + "]";
 
-        Utility.displayHeader(monsterName);
+        Utility.displayHeader(Colour.PURPLE_BRIGHT + this.getName() + Colour.RESET);
         System.out.println(healthBar);
         System.out.println();
     }

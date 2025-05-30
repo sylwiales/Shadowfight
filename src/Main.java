@@ -4,7 +4,6 @@ public class Main {
 
         Utility.printCenteredText(Art.GAME_TITLE);
         Utility.pressEnter();
-        Utility.clearScreen();
 
         while(true) {
             Utility.displayHeader("MENU");

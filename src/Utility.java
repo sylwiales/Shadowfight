@@ -42,7 +42,7 @@ public class Utility {
      * @param text
      */
     public static void displayHeader(String text) {
-        int textLength = text.length();
+        int textLength = text.replaceAll("\u001B\\[[;\\d]*m", "").length();
 
         // Oblicz lewą i prawą przestrzeń
         int totalSpaces = BORDER_LENGTH - textLength;
