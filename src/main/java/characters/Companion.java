@@ -53,7 +53,7 @@ public class Companion implements Fighter {
         }
         else{
             setHealth(currentHealth + 10);
-            System.out.println(Colour.BLUE_BRIGHT + getName() + Colour.RESET + " odzyskuje 10 punktów życia");
+            System.out.println(Colour.BLUE_BRIGHT + getName() + Colour.RESET + " odzyskuje " + Colour.RED + "10" + Colour.RESET + " punktów życia");
         }
     }
 
@@ -64,7 +64,7 @@ public class Companion implements Fighter {
         }
         if(companion.isParalyzed()){
             companion.setParalyzedTurnsRemaining(0);
-            System.out.println(Colour.BLUE_BRIGHT + getName() + Colour.RESET + " kończy paraliż " + companion.getName());
+            System.out.println(Colour.BLUE_BRIGHT + getName() + Colour.RESET + " kończy paraliż " + Colour.BLUE_BRIGHT + companion.getName() + Colour.RESET);
         }
         else{
             companion.setHealth(companion.getMaxHealth());
@@ -107,10 +107,5 @@ public class Companion implements Fighter {
         if (o == null || getClass() != o.getClass()) return false;
         Companion companion = (Companion) o;
         return name.equals(companion.name);
-    }
-
-    @Override
-    public int hashCode() {
-        return name.hashCode();
     }
 }

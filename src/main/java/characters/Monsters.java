@@ -96,7 +96,7 @@ public class Monsters {
 
             if (isWeak) {
                 System.out.println(Colour.PURPLE_BRIGHT + getName() + Colour.RESET + " jest wrażliwy na obrażenia " + attackType.getName() + "! Otrzymuje " + Colour.RED + finalDamage + Colour.RESET + " punktów obrażeń!");
-                System.out.println(Colour.PURPLE_BRIGHT + getName() + Colour.RESET +"przewidział taki przebieg wydarzeń, już nie jest wrażliwy na obrażenia " + attackType.getName() + "!");
+                System.out.println(Colour.PURPLE_BRIGHT + getName() + Colour.RESET + " przewidział taki przebieg wydarzeń, już nie jest wrażliwy na obrażenia " + attackType.getName() + "!");
                 Data.AttackType[] attackTypes = Data.AttackType.values();
                 Data.AttackType selectedType;
                 do {
@@ -105,7 +105,7 @@ public class Monsters {
 
                 setWeakness(selectedType);
             } else {
-                System.out.println(Colour.PURPLE_BRIGHT + getName() + " otrzymuje " + Colour.RED + finalDamage + Colour.RESET + " punktów obrażeń!" + Colour.RESET);
+                System.out.println(Colour.PURPLE_BRIGHT + getName() + Colour.RESET + " otrzymuje " + Colour.RED + finalDamage + Colour.RESET + " punktów obrażeń!" + Colour.RESET);
             }
 
             setHealth(getHealth() - finalDamage);

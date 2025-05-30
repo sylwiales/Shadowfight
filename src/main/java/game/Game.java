@@ -37,7 +37,7 @@ public class Game {
     }
 
     public void gatherTeam() {
-        Utility.displayHeader("ZBIERZ DRUŻYNE");
+        Utility.displayHeader("ZBIERZ DRUŻYNĘ");
         System.out.println("Wybierz 3 towarzyszy (wprowadź numery 1-" + availableCompanions.size() + "):");
 
         // Wyświetl dostępnych towarzyszy z numerami
@@ -76,7 +76,7 @@ public class Game {
 
     public void startHunt() {
         if (party == null || party.isEmpty()) {
-            System.out.println("Przed wyruszeniem w drogę należy zebrać drużynę.");
+            Utility.displayHeader(Colour.RED + "Przed wyruszeniem w drogę należy zebrać drużynę." + Colour.RESET);
             return;
         }
         if (activeMonster >= monsters.size()) {
@@ -114,7 +114,7 @@ public class Game {
                     activeCompanion = party.get(activePartyIndex);
                 }
 
-                Utility.displayHeader(activeCompanion.getName());
+                Utility.displayHeader(Colour.BLUE_BRIGHT + activeCompanion.getName() + Colour.RESET);
                 System.out.println("1. ATAKUJ\n2. LECZ\n3. COFNIJ");
 
                 option = Utility.getValidInput(3);
@@ -125,7 +125,7 @@ public class Game {
                 } else if (option == 2) {
                     if(activeCompanion.getAttackType() == Data.AttackType.MAGIC){
                         currentMonster.displayMonsterInfo(monsterMaxHealth);
-                        Utility.displayHeader("WYBIERZ CEL LECZENIA");
+                        Utility.displayHeader( "WYBIERZ CEL LECZENIA");
                         for (int i = 0; i < party.size(); i++) {
                             System.out.println((i + 1) + ". " + party.get(i).displayInfo());
                         }
