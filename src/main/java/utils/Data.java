@@ -1,3 +1,5 @@
+package utils;
+
 public class Data {
     public enum AttackType {
         SLASHING("sieczne"),

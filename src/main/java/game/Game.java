@@ -1,3 +1,9 @@
+package game;
+
+import art.Art;
+import characters.*;
+import utils.*;
+
 import java.util.ArrayList;
 import java.util.List;
 

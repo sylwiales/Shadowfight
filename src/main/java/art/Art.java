@@ -1,3 +1,5 @@
+package art;
+
 public class Art {
     public static final String[] SKELETON_ART = {
             ".-.",

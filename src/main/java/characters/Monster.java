@@ -1,3 +1,6 @@
+package characters;
+import utils.*;
+
 public abstract class Monster implements Fighter {
     private final String name;
     private int health;
@@ -24,7 +27,8 @@ public abstract class Monster implements Fighter {
     public void setHealth(int health) {
         this.health = health;
     }
-    public void showArt() {Utility.printCenteredText(this.art);}
+    public void showArt() {
+        Utility.printCenteredText(this.art);}
     public void setWeakness(Data.AttackType weakness){this.weakness = weakness;}
 
     public void displayMonsterInfo(int monsterMaxHealth) {

@@ -1,3 +1,7 @@
+package game;
+import art.Art;
+import utils.Utility;
+
 public class Main {
     public static void main(String[] args) {
         Game game = new Game();

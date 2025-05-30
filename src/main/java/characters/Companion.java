@@ -1,3 +1,6 @@
+package characters;
+
+import utils.*;
 import java.util.Random;
 
 public class Companion implements Fighter {
@@ -10,7 +13,7 @@ public class Companion implements Fighter {
     private int paralyzedTurnsRemaining = 0;
     private final Random rand = new Random();
 
-    Companion(String name, int strength, int maxHealth, Data.AttackType attackType) {
+    public Companion(String name, int strength, int maxHealth, Data.AttackType attackType) {
         this.name = name;
         this.strength = strength;
         this.maxHealth = maxHealth;

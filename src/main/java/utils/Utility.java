@@ -1,3 +1,5 @@
+package utils;
+
 import java.util.Scanner;
 import java.util.InputMismatchException;
 
@@ -39,7 +41,7 @@ public class Utility {
 
     /**
      * Metoda jako argument przyjmuje tekst który centruje i wyświetla nad BORDER
-     * @param text
+     * @param text tekst do wyświetlenia
      */
     public static void displayHeader(String text) {
         int textLength = text.replaceAll("\u001B\\[[;\\d]*m", "").length();
@@ -56,7 +58,7 @@ public class Utility {
 
     /**
      * Metoda jako argument przyjmuje tablice stringów którą centruje do BORDER i ją wyświetla linijka po linijce
-     * @param lines
+     * @param lines tekst do wyświetlenia
      */
     public static void printCenteredText(String[] lines) {
         int padding;

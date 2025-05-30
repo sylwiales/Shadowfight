@@ -1,3 +1,8 @@
+package characters;
+import utils.*;
+
+import art.Art;
+
 import java.util.Random;
 
 public class Monsters {
